@@ -8,187 +8,119 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* (keep all existing CSS from the previous answer) */
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: "Inter", sans-serif;
-            background: linear-gradient(145deg, #0b0b14 0%, #11111f 100%);
-            color: #e0e0ff;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
+            font-family:"Inter", sans-serif;
+            background:linear-gradient(145deg, #0b0b14 0%, #11111f 100%);
+            color:#e0e0ff;
+            line-height:1.6;
+            min-height:100vh;
+            padding:2rem 1.5rem;
         }
-
         .glass-panel {
-            background: rgba(15, 15, 30, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 80, 180, 0.2);
-            border-radius: 2.5rem;
-            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 110, 180, 0.1) inset;
+            background:rgba(15,15,30,0.7);
+            backdrop-filter:blur(15px);
+            -webkit-backdrop-filter:blur(15px);
+            border:1px solid rgba(255,80,180,0.2);
+            border-radius:2.5rem;
+            box-shadow:0 30px 60px -10px rgba(0,0,0,0.8),0 0 0 1px rgba(255,110,180,0.1) inset;
         }
-
-        .neon-glow {
-            text-shadow: 0 0 10px #ff60b0, 0 0 25px #a060ff;
-        }
-
-        .neon-border {
-            border: 1px solid transparent;
-            background: linear-gradient(145deg, #1e1e35, #141425) padding-box, linear-gradient(135deg, #ff80bf, #a080ff) border-box;
-            border-radius: 2rem;
-        }
-
+        .neon-glow { text-shadow:0 0 10px #ff60b0,0 0 25px #a060ff; }
         .btn-glow {
-            background: linear-gradient(105deg, #ff70b5, #a060ff);
-            color: white;
-            font-weight: 600;
-            border: none;
-            padding: 0.9rem 1.8rem;
-            border-radius: 3rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 8px 20px -8px #ff60b0, 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-            letter-spacing: 0.3px;
+            background:linear-gradient(105deg, #ff70b5, #a060ff);
+            color:white;
+            font-weight:600;
+            border:none;
+            padding:0.9rem 1.8rem;
+            border-radius:3rem;
+            font-size:1rem;
+            cursor:pointer;
+            transition:all 0.2s ease;
+            box-shadow:0 8px 20px -8px #ff60b0,0 0 0 1px rgba(255,255,255,0.15) inset;
+            letter-spacing:0.3px;
         }
-
         .btn-glow:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 28px -6px #ff60d0, 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
-            filter: brightness(1.1);
+            transform:scale(1.02);
+            box-shadow:0 12px 28px -6px #ff60d0,0 0 0 2px rgba(255,255,255,0.25) inset;
+            filter:brightness(1.1);
         }
-
-        .btn-glow:disabled {
-            opacity: 0.5;
-            pointer-events: none;
-            filter: grayscale(0.5);
-        }
-
+        .btn-glow:disabled { opacity:0.5; pointer-events:none; }
         .input-neon {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid #444470;
-            border-radius: 3rem;
-            padding: 0.9rem 1.5rem;
-            font-size: 1rem;
-            color: white;
-            width: 100%;
-            transition: all 0.15s;
+            background:rgba(0,0,0,0.4);
+            border:1px solid #444470;
+            border-radius:3rem;
+            padding:0.9rem 1.5rem;
+            font-size:1rem;
+            color:white;
+            width:100%;
+            transition:all 0.15s;
         }
-
         .input-neon:focus {
-            outline: none;
-            border-color: #ff90c0;
-            box-shadow: 0 0 0 3px rgba(255, 100, 180, 0.3);
+            outline:none;
+            border-color:#ff90c0;
+            box-shadow:0 0 0 3px rgba(255,100,180,0.3);
         }
-
         .stat-badge {
-            background: rgba(25, 20, 45, 0.7);
-            border: 1px solid #3a2a55;
-            border-radius: 2rem;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: #d0b0ff;
+            background:rgba(25,20,45,0.7);
+            border:1px solid #3a2a55;
+            border-radius:2rem;
+            padding:0.5rem 1.2rem;
+            font-size:0.9rem;
+            font-weight:500;
+            display:inline-flex;
+            align-items:center;
+            gap:0.6rem;
+            color:#d0b0ff;
         }
-
         .dot-pulse {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #60ffb0;
-            box-shadow: 0 0 12px #60ffb0;
-            animation: pulse 1.5s infinite;
+            width:10px; height:10px; border-radius:50%; background:#60ffb0;
+            box-shadow:0 0 12px #60ffb0; animation:pulse 1.5s infinite;
         }
-
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-
+        @keyframes pulse { 0%{opacity:0.6} 50%{opacity:1} 100%{opacity:0.6} }
         .result-box {
-            background: #0a0a18;
-            border-radius: 2rem;
-            padding: 1.5rem;
-            border-left: 6px solid #ff90b0;
-            font-family: 'Inter', monospace;
-            word-break: break-word;
+            background:#0a0a18; border-radius:2rem; padding:1.5rem;
+            border-left:6px solid #ff90b0; word-break:break-word;
         }
-
-        .footer-link {
-            color: #b0b0ff;
-            text-decoration: none;
-            border-bottom: 1px dotted #6060a0;
-            transition: all 0.1s;
-        }
-        .footer-link:hover { color: white; border-bottom-color: #ffa0c0; }
-
+        .footer-link { color:#b0b0ff; text-decoration:none; border-bottom:1px dotted #6060a0; }
+        .footer-link:hover { color:white; border-bottom-color:#ffa0c0; }
         .feature-card {
-            background: rgba(12, 12, 22, 0.8);
-            border: 1px solid #2a2a48;
-            border-radius: 2rem;
-            padding: 1.8rem 1.5rem;
-            transition: all 0.15s;
+            background:rgba(12,12,22,0.8); border:1px solid #2a2a48;
+            border-radius:2rem; padding:1.8rem 1.5rem; transition:all 0.15s;
         }
-        .feature-card:hover { border-color: #ff88b0; box-shadow: 0 10px 30px -15px #ff88b0; }
-
-        hr { border: 0.5px solid #2a2a50; margin: 2.5rem 0; }
-
+        .feature-card:hover { border-color:#ff88b0; box-shadow:0 10px 30px -15px #ff88b0; }
         .tab-buttons {
-            display: flex;
-            gap: 0.8rem;
-            background: rgba(0,0,0,0.3);
-            padding: 0.6rem;
-            border-radius: 4rem;
-            border: 1px solid #2d2d55;
+            display:flex; gap:0.8rem; background:rgba(0,0,0,0.3);
+            padding:0.6rem; border-radius:4rem; border:1px solid #2d2d55;
         }
         .tab-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #a0a0f0;
-            font-weight: 600;
-            padding: 0.8rem 0;
-            border-radius: 3rem;
-            cursor: pointer;
-            transition: all 0.15s;
-            font-size: 1rem;
+            flex:1; background:transparent; border:none; color:#a0a0f0;
+            font-weight:600; padding:0.8rem 0; border-radius:3rem;
+            cursor:pointer; transition:all 0.15s; font-size:1rem;
         }
         .tab-btn.active {
-            background: linear-gradient(145deg, #ff80b0, #b080ff);
-            color: black;
-            box-shadow: 0 0 20px #ff80c0;
-            font-weight: 700;
+            background:linear-gradient(145deg, #ff80b0, #b080ff);
+            color:black; box-shadow:0 0 20px #ff80c0; font-weight:700;
         }
-
-        .error-box {
-            background: #2a0f0f;
-            border-left: 6px solid #ff5555;
-            color: #ffaaaa;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-top: 1rem;
+        .cors-warning {
+            background:#2a0f0f; border:1px solid #ff6666; border-radius:1rem;
+            padding:1rem; margin:1.5rem 0; color:#ff9999;
         }
     </style>
 </head>
 <body>
-
-    <main style="max-width: 1400px; margin: 0 auto;">
-
+    <main style="max-width:1400px; margin:0 auto;">
         <!-- HEADER -->
-        <div class="glass-panel" style="padding: 2rem 2.5rem; margin-bottom: 2.5rem;">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
-                <div style="display: flex; align-items: center; gap: 1.5rem;">
-                    <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #ff90b0, #a080ff); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; box-shadow: 0 0 30px #ff90d0;">R</div>
+        <div class="glass-panel" style="padding:2rem 2.5rem; margin-bottom:2.5rem;">
+            <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:2rem;">
+                <div style="display:flex; align-items:center; gap:1.5rem;">
+                    <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #ff90b0, #a080ff); display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:800; box-shadow:0 0 30px #ff90d0;">R</div>
                     <div>
-                        <h1 style="font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px;" class="neon-glow">REDXBOT302</h1>
-                        <p style="color: #b0b0ff;">by Abdul Rehman Rajpoot & Muzamil Khan</p>
+                        <h1 style="font-size:2.2rem; font-weight:700; letter-spacing:-0.5px;" class="neon-glow">REDXBOT302</h1>
+                        <p style="color:#b0b0ff;">by Abdul Rehman Rajpoot & Muzamil Khan</p>
                     </div>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div style="display:flex; flex-wrap:wrap; gap:1rem;">
                     <span class="stat-badge"><span class="dot-pulse"></span> RAILWAY BACKEND</span>
                     <span class="stat-badge">⚡ 100+ FEATURES</span>
                 </div>
@@ -196,89 +128,85 @@
         </div>
 
         <!-- MAIN GRID -->
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem;">
-            <!-- LEFT COLUMN: INFO & FEATURES -->
+        <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:2rem;">
+            <!-- LEFT COLUMN: INFO -->
             <div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">Professional<br><span style="color: #ffa0d0;">Session Generator</span></h2>
-                    <p style="color: #c0c0ff; font-size: 1.2rem; margin-bottom: 2rem;">Generate secure pairing codes and QR for WhatsApp with developer‑grade reliability.</p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem;">
-                        <div class="feature-card">
-                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔐</div>
-                            <div style="font-weight: 700;">100% Secure</div>
-                            <div style="font-size: 0.9rem; color: #aaaaff;">end‑to‑end encrypted</div>
-                        </div>
-                        <div class="feature-card">
-                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⏳</div>
-                            <div style="font-weight: 700;">24/7 Uptime</div>
-                            <div style="font-size: 0.9rem; color: #aaaaff;">Railway hosting</div>
-                        </div>
+                <div class="glass-panel" style="padding:2rem;">
+                    <h2 style="font-size:2rem; font-weight:600; margin-bottom:1rem;">Professional<br><span style="color:#ffa0d0;">Session Generator</span></h2>
+                    <p style="color:#c0c0ff; font-size:1.2rem; margin-bottom:2rem;">Generate secure pairing codes and QR for WhatsApp with developer‑grade reliability.</p>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2.5rem;">
+                        <div class="feature-card"><div style="font-size:2.2rem;">🔐</div><div style="font-weight:700;">100% Secure</div><div style="font-size:0.9rem; color:#aaaaff;">end‑to‑end encrypted</div></div>
+                        <div class="feature-card"><div style="font-size:2.2rem;">⏳</div><div style="font-weight:700;">24/7 Uptime</div><div style="font-size:0.9rem; color:#aaaaff;">Railway hosting</div></div>
                     </div>
-
                     <!-- CONTACT INFO -->
-                    <div style="background: #080814; border-radius: 2rem; padding: 1.5rem;">
-                        <h3 style="font-weight: 600; margin-bottom: 1.2rem;">👑 Owner / Support</h3>
-                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                            <div><span style="color: #8080d0;">📞 Abdul Rehman:</span> <a href="tel:+61468259338" style="color: #ffb0d0; text-decoration: none;">+61468259338</a></div>
-                            <div><span style="color: #8080d0;">📞 Muzamil Khan:</span> <a href="tel:+923183928892" style="color: #ffb0d0; text-decoration: none;">+923183928892</a></div>
-                            <div><span style="color: #8080d0;">📢 Channel:</span> <a href="https://whatsapp.com/channel/0029VbCPnYf96H4SNehkev10" target="_blank" class="footer-link">Join →</a></div>
-                            <div><span style="color: #8080d0;">👥 Group:</span> <a href="https://chat.whatsapp.com/LhSmx2SeXX75r8I2bxsNDo" target="_blank" class="footer-link">WhatsApp Group</a></div>
-                            <div><span style="color: #8080d0;">📺 YouTube:</span> <a href="https://youtube.com/@rootmindtech" target="_blank" class="footer-link">@rootmindtech</a></div>
-                            <div><span style="color: #8080d0;">🐙 GitHub:</span> <a href="https://github.com/AbdulRehman19721986/redxbot302" target="_blank" class="footer-link">redxbot302</a></div>
+                    <div style="background:#080814; border-radius:2rem; padding:1.5rem;">
+                        <h3 style="font-weight:600; margin-bottom:1.2rem;">👑 Owner / Support</h3>
+                        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                            <div><span style="color:#8080d0;">📞 Abdul Rehman:</span> <a href="tel:+61468259338" style="color:#ffb0d0;">+61468259338</a></div>
+                            <div><span style="color:#8080d0;">📞 Muzamil Khan:</span> <a href="tel:+923183928892" style="color:#ffb0d0;">+923183928892</a></div>
+                            <div><span style="color:#8080d0;">📢 Channel:</span> <a href="https://whatsapp.com/channel/0029VbCPnYf96H4SNehkev10" target="_blank" class="footer-link">Join →</a></div>
+                            <div><span style="color:#8080d0;">👥 Group:</span> <a href="https://chat.whatsapp.com/LhSmx2SeXX75r8I2bxsNDo" target="_blank" class="footer-link">WhatsApp Group</a></div>
+                            <div><span style="color:#8080d0;">📺 YouTube:</span> <a href="https://youtube.com/@rootmindtech" target="_blank" class="footer-link">@rootmindtech</a></div>
+                            <div><span style="color:#8080d0;">🐙 GitHub:</span> <a href="https://github.com/AbdulRehman19721986/redxbot302" target="_blank" class="footer-link">redxbot302</a></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: PAIRING & QR CONTROLS -->
+            <!-- RIGHT COLUMN: PAIRING & QR -->
             <div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem;">🔌 Generate Session</h3>
-
+                <div class="glass-panel" style="padding:2rem;">
+                    <h3 style="font-size:1.8rem; font-weight:600; margin-bottom:1.5rem;">🔌 Generate Session</h3>
                     <!-- TABS -->
-                    <div class="tab-buttons" style="margin-bottom: 2rem;">
+                    <div class="tab-buttons" style="margin-bottom:2rem;">
                         <button class="tab-btn active" id="tabPairBtn" onclick="switchTab('pair')">🔑 Pair Code</button>
                         <button class="tab-btn" id="tabQrBtn" onclick="switchTab('qr')">📷 QR Code</button>
                     </div>
 
                     <!-- PAIR SECTION -->
                     <div id="pairSection">
-                        <p style="margin-bottom: 1.2rem;">Enter your number <span style="color: #ffa0b0;">with country code</span> (e.g., 923009842133)</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-                            <input type="text" id="pairNumber" class="input-neon" placeholder="923009842133" style="flex: 2;">
-                            <button class="btn-glow" id="pairBtn" style="flex: 1;" onclick="generatePairCode()">Generate Code</button>
+                        <p style="margin-bottom:1.2rem;">Enter your number <span style="color:#ffa0b0;">with country code</span> (e.g., 923009842133)</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+                            <input type="text" id="pairNumber" class="input-neon" placeholder="923009842133" style="flex:2;">
+                            <button class="btn-glow" id="pairBtn" style="flex:1;" onclick="generatePairCode()">Generate Code</button>
                         </div>
-                        <div id="pairLoading" style="display: none; align-items: center; gap: 0.8rem; margin: 1rem 0;">
-                            <div class="dot-pulse"></div> <span style="color: #aaaaff;">requesting code from server...</span>
+                        <div id="pairLoading" style="display:none; align-items:center; gap:0.8rem; margin:1rem 0;">
+                            <div class="dot-pulse"></div> <span>requesting code from server...</span>
                         </div>
-                        <div id="pairResult" class="result-box" style="display: none; margin-top: 1.5rem;"></div>
+                        <div id="pairResult" class="result-box" style="display:none; margin-top:1.5rem;"></div>
                     </div>
 
-                    <!-- QR SECTION (initially hidden) -->
-                    <div id="qrSection" style="display: none;">
-                        <p style="margin-bottom: 1.2rem;">Scan QR code with WhatsApp (Linked Devices)</p>
-                        <div style="text-align: center;">
+                    <!-- QR SECTION -->
+                    <div id="qrSection" style="display:none;">
+                        <p style="margin-bottom:1.2rem;">Scan QR code with WhatsApp (Linked Devices)</p>
+                        <div style="text-align:center;">
                             <button class="btn-glow" id="qrBtn" onclick="fetchQR()">📥 Generate QR</button>
-                            <div id="qrLoading" style="display: none; align-items: center; gap: 0.8rem; justify-content: center; margin: 1.5rem 0;">
+                            <div id="qrLoading" style="display:none; align-items:center; gap:0.8rem; justify-content:center; margin:1.5rem 0;">
                                 <div class="dot-pulse"></div> <span>generating QR...</span>
                             </div>
-                            <div id="qrImageContainer" style="margin-top: 2rem; display: none; justify-content: center;">
-                                <img id="qrImage" src="" alt="QR Code" style="max-width: 260px; border-radius: 2rem; border: 3px solid #ffa0c0; padding: 0.5rem; background: white;">
+                            <div id="qrImageContainer" style="margin-top:2rem; display:none; justify-content:center;">
+                                <img id="qrImage" src="" alt="QR Code" style="max-width:260px; border-radius:2rem; border:3px solid #ffa0c0; padding:0.5rem; background:white;">
                             </div>
                         </div>
                     </div>
 
-                    <!-- CORS WARNING (if needed) -->
-                    <div id="corsWarning" style="display: none; background: #331111; border-radius: 1rem; padding: 1rem; margin-top: 1.5rem; border: 1px solid #ff6666;">
-                        <p style="color: #ff9999;">⚠️ Backend CORS error – requests blocked. To fix, enable CORS on your Railway server or use a CORS proxy. See console for details.</p>
+                    <!-- CORS WARNING / INSTRUCTION BOX -->
+                    <div id="corsWarning" class="cors-warning" style="display:none;">
+                        <p>❌ <strong>CORS error:</strong> Requests are blocked by the backend.</p>
+                        <p>👉 To fix this, add CORS middleware to your Railway backend:</p>
+                        <pre style="background:#111; padding:0.8rem; border-radius:0.8rem; overflow-x:auto;">npm install cors
+
+// In your server.js:
+const cors = require('cors');
+app.use(cors()); // Or specify your Vercel domain</pre>
+                        <p>After updating, redeploy the backend.</p>
                     </div>
 
                     <!-- INFO FOOTER -->
-                    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #2a2a50;">
-                        <div style="background: #0a0a18; border-radius: 1.5rem; padding: 1.2rem;">
-                            <p style="color: #aaaaff;">🔹 Your session will be sent directly to your WhatsApp number after pairing. Keep it secret.</p>
-                            <p style="color: #aaaaff; font-size: 0.9rem; margin-top: 0.8rem;">⚡ Backend: <a href="https://redxpair5-production.up.railway.app" target="_blank" style="color: #ffb0d0;">redxpair5-production.up.railway.app</a></p>
+                    <div style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid #2a2a50;">
+                        <div style="background:#0a0a18; border-radius:1.5rem; padding:1.2rem;">
+                            <p style="color:#aaaaff;">🔹 Your session will be sent directly to your WhatsApp number after pairing. Keep it secret.</p>
+                            <p style="color:#aaaaff; font-size:0.9rem; margin-top:0.8rem;">⚡ Backend: <a href="https://redxpair5-production.up.railway.app" target="_blank" style="color:#ffb0d0;">redxpair5-production.up.railway.app</a></p>
                         </div>
                     </div>
                 </div>
@@ -286,10 +214,9 @@
         </div>
 
         <!-- FOOTER -->
-        <div style="margin-top: 3rem; text-align: center;">
-            <p style="color: #8080b0;">© 2025 REDXBOT302 – Developed by Abdul Rehman Rajpoot & Muzamil Khan.<br> All sessions are temporary. No data stored.</p>
+        <div style="margin-top:3rem; text-align:center;">
+            <p style="color:#8080b0;">© 2025 REDXBOT302 – Developed by Abdul Rehman Rajpoot & Muzamil Khan.<br> All sessions are temporary. No data stored.</p>
         </div>
-
     </main>
 
     <script>
@@ -325,12 +252,11 @@
                 tabPair.classList.remove('active');
             }
         }
-        window.switchTab = switchTab;
 
-        // --- HELPER: handle fetch errors ---
+        // --- FETCH WITH CORS HANDLING ---
         async function fetchWithCors(url, options = {}) {
             try {
-                const response = await fetch(url, { ...options, mode: 'cors', credentials: 'omit' });
+                const response = await fetch(url, { ...options, mode: 'cors' });
                 return response;
             } catch (err) {
                 console.error('Fetch error:', err);
@@ -341,13 +267,10 @@
             }
         }
 
-        // --- PAIR CODE GENERATION ---
+        // --- GENERATE PAIR CODE ---
         async function generatePairCode() {
             const number = pairNumber.value.trim().replace(/\D/g, '');
-            if (!number) {
-                alert('Please enter a phone number');
-                return;
-            }
+            if (!number) { alert('Please enter a phone number'); return; }
             if (number.length < 11 || number.length > 15) {
                 alert('Number must be between 11 and 15 digits (country code included)');
                 return;
@@ -359,28 +282,28 @@
             pairBtn.disabled = true;
 
             try {
-                const response = await fetchWithCors(`${BACKEND_URL}/code?number=${number}`);
+                const response = await fetchWithCors(`${BACKEND_URL}/pair?number=${number}`);
                 if (!response.ok) {
                     const text = await response.text();
                     throw new Error(`HTTP ${response.status}: ${text.substring(0,100)}`);
                 }
-                const data = await response.json();
-                const code = data.code || 'NO_CODE';
-
-                pairResultDiv.innerHTML = `<div style="font-weight: 600;">✅ Pairing Code</div><div style="font-size: 1.8rem; font-family: monospace; letter-spacing: 4px;">${code}</div><div style="font-size: 0.8rem; margin-top: 0.5rem;">Open WhatsApp → Linked Devices → Link a Device → use code</div>`;
+                // The backend returns plain text (the pair code) – adjust if it returns JSON
+                const code = await response.text();
+                pairResultDiv.innerHTML = `<div style="font-weight:600;">✅ Pairing Code</div>
+                    <div style="font-size:1.8rem; font-family:monospace; letter-spacing:4px;">${code}</div>
+                    <div style="font-size:0.8rem; margin-top:0.5rem;">Open WhatsApp → Linked Devices → Link a Device → use code</div>`;
                 pairResultDiv.style.display = 'block';
             } catch (err) {
                 console.error(err);
-                pairResultDiv.innerHTML = `<div style="color: #ff8888;">❌ Error: ${err.message}</div>`;
+                pairResultDiv.innerHTML = `<div style="color:#ff8888;">❌ Error: ${err.message}</div>`;
                 pairResultDiv.style.display = 'block';
             } finally {
                 pairLoading.style.display = 'none';
                 pairBtn.disabled = false;
             }
         }
-        window.generatePairCode = generatePairCode;
 
-        // --- QR CODE GENERATION ---
+        // --- GENERATE QR ---
         async function fetchQR() {
             qrLoading.style.display = 'flex';
             qrImageContainer.style.display = 'none';
@@ -399,12 +322,16 @@
                 qrImageContainer.style.display = 'flex';
             } catch (err) {
                 console.error(err);
-                alert('Could not generate QR. Check console for details.');
+                alert('Could not generate QR. Check console.');
             } finally {
                 qrLoading.style.display = 'none';
                 qrBtn.disabled = false;
             }
         }
+
+        // Expose functions globally
+        window.switchTab = switchTab;
+        window.generatePairCode = generatePairCode;
         window.fetchQR = fetchQR;
     </script>
 </body>
