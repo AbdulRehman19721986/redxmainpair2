@@ -163,6 +163,15 @@
             box-shadow: 0 0 20px #ff80c0;
             font-weight: 700;
         }
+
+        .error-box {
+            background: #2a0f0f;
+            border-left: 6px solid #ff5555;
+            color: #ffaaaa;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -235,7 +244,7 @@
 
                     <!-- PAIR SECTION -->
                     <div id="pairSection">
-                        <p style="margin-bottom: 1.2rem;">Enter your number <span style="color: #ffa0b0;">without country code</span> (e.g., 923009842133)</p>
+                        <p style="margin-bottom: 1.2rem;">Enter your number <span style="color: #ffa0b0;">with country code</span> (e.g., 923009842133)</p>
                         <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
                             <input type="text" id="pairNumber" class="input-neon" placeholder="923009842133" style="flex: 2;">
                             <button class="btn-glow" id="pairBtn" style="flex: 1;" onclick="generatePairCode()">Generate Code</button>
@@ -258,6 +267,11 @@
                                 <img id="qrImage" src="" alt="QR Code" style="max-width: 260px; border-radius: 2rem; border: 3px solid #ffa0c0; padding: 0.5rem; background: white;">
                             </div>
                         </div>
+                    </div>
+
+                    <!-- CORS WARNING (if needed) -->
+                    <div id="corsWarning" style="display: none; background: #331111; border-radius: 1rem; padding: 1rem; margin-top: 1.5rem; border: 1px solid #ff6666;">
+                        <p style="color: #ff9999;">⚠️ Backend CORS error – requests blocked. To fix, enable CORS on your Railway server or use a CORS proxy. See console for details.</p>
                     </div>
 
                     <!-- INFO FOOTER -->
@@ -295,6 +309,7 @@
         const qrLoading = document.getElementById('qrLoading');
         const qrImageContainer = document.getElementById('qrImageContainer');
         const qrImage = document.getElementById('qrImage');
+        const corsWarning = document.getElementById('corsWarning');
 
         // --- SWITCH TABS ---
         function switchTab(tab) {
@@ -312,6 +327,20 @@
         }
         window.switchTab = switchTab;
 
+        // --- HELPER: handle fetch errors ---
+        async function fetchWithCors(url, options = {}) {
+            try {
+                const response = await fetch(url, { ...options, mode: 'cors', credentials: 'omit' });
+                return response;
+            } catch (err) {
+                console.error('Fetch error:', err);
+                if (err.message.includes('Failed to fetch')) {
+                    corsWarning.style.display = 'block';
+                }
+                throw err;
+            }
+        }
+
         // --- PAIR CODE GENERATION ---
         async function generatePairCode() {
             const number = pairNumber.value.trim().replace(/\D/g, '');
@@ -326,11 +355,15 @@
 
             pairLoading.style.display = 'flex';
             pairResultDiv.style.display = 'none';
+            corsWarning.style.display = 'none';
             pairBtn.disabled = true;
 
             try {
-                const response = await fetch(`${BACKEND_URL}/code?number=${number}`);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const response = await fetchWithCors(`${BACKEND_URL}/code?number=${number}`);
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${text.substring(0,100)}`);
+                }
                 const data = await response.json();
                 const code = data.code || 'NO_CODE';
 
@@ -351,19 +384,22 @@
         async function fetchQR() {
             qrLoading.style.display = 'flex';
             qrImageContainer.style.display = 'none';
+            corsWarning.style.display = 'none';
             qrBtn.disabled = true;
 
             try {
-                const response = await fetch(`${BACKEND_URL}/qr`);
-                if (!response.ok) throw new Error(`QR fetch failed (${response.status})`);
-
+                const response = await fetchWithCors(`${BACKEND_URL}/qr`);
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`QR fetch failed: ${response.status} - ${text.substring(0,100)}`);
+                }
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
                 qrImage.src = url;
                 qrImageContainer.style.display = 'flex';
             } catch (err) {
                 console.error(err);
-                alert('Could not generate QR. Check console.');
+                alert('Could not generate QR. Check console for details.');
             } finally {
                 qrLoading.style.display = 'none';
                 qrBtn.disabled = false;
